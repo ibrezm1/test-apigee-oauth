@@ -1,0 +1,36 @@
+
+https://pipedream.com/@ibrezm1/requestbin-p_ezCgngy/build?namespace=trigger&section=configure&triggerId=sub_PdUplze
+
+https://jinatedtugasal-eval-test.apigee.net/test-oauth
+
+https://mocktarget.apigee.net/json
+
+https://jinatedtugasal-eval-test.apigee.net/oauth/client_credential/accesstoken
+
+
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" \
+"https://jinatedtugasal-eval-test.apigee.net/oauth/client_credential/accesstoken?grant_type=client_credentials" \
+-d "client_id= 3fyns8j65SwbfY75JiAW2kbpJHsbquHG&client_secret= tNVjfn6c2S9gOXe7"
+
+ibrezmm>ibrezmm$ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" \
+"https://jinatedtugasal-eval-test.apigee.net/oauth/client_credential/accesstoken?grant_type=client_credentials" \
+-d "client_id=3fyns8j65SwbfY75JiAW2kbpJHsbquHG&client_secret=tNVjfn6c2S9gOXe7"
+{
+  "refresh_token_expires_in" : "0",
+  "api_product_list" : "[helloworld]",
+  "api_product_list_json" : [ "helloworld" ],
+  "organization_name" : "jinatedtugasal-eval",
+  "developer.email" : "helloworld@apigee.com",
+  "token_type" : "BearerToken",
+  "issued_at" : "1665681886044",
+  "client_id" : "3fyns8j65SwbfY75JiAW2kbpJHsbquHG",
+  "access_token" : "nIs2PARP6Lc2jLpRX59tDX8KglIz",
+  "application_name" : "3bb616e2-8731-4335-9a2b-76857a851dd2",
+  "scope" : "",
+  "expires_in" : "3599",
+  "refresh_count" : "0",
+  "status" : "approved"
+}%                         
+
+curl https://jinatedtugasal-eval-test.apigee.net/test-oauth -H "Authorization: Bearer nIs2PARP6Lc2jLpRX59tDX8KglIz"
+

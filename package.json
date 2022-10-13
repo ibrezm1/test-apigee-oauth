@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "axios": "^1.1.2",
+    "jest": "^29.1.2"
+  },
+  "name": "test-apigeeoauth",
+  "version": "1.0.0",
+  "main": "getoauth.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start" : "node useOauth.js",
+    "test": "npx jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
