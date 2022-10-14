@@ -11,9 +11,6 @@ const { getToken, mymethod } = require("../getoauth4");
 
 // Debug tests
 // https://jest-bot.github.io/jest/docs/troubleshooting.html
-
-// Reset Mocks
-// https://stackoverflow.com/questions/47812801/how-to-reset-jest-mock-functions-calls-count-before-every-test
 const axios = require('axios');
 
 // Mock out all top level functions, such as get, put, delete and post:
@@ -35,30 +32,31 @@ test('Test iprice method returns data', () => {
   });
 });
 
-test("bad response for get token", async () => {
-  jest.clearAllMocks();
-  axios.mockClear();
-  
-  //axios.mockImplementation(() => Promise.reject({ response: { data: 'abcd' } }));
-  axios.mockReturnValue(Promise.reject({response:{data:'abcd'},message:'test'}));
-  try {
-    const rate = await getToken();
-    expect(rate).toEqual(null);
-  } catch (e) {
-    console.log(e)
-  }
-});
+test("bad response", async() => {
+  // axios.mockImplementation((url) => {
+  //   switch (url) {
+  //     case '/oauth/client_credential/accesstoken':
+  //       console.log('in mock auth');
+  //       return Promise.resolve({ data: { access_token: 'dfsdfsdfsf' } })
+  //     case '/items.json':
+  //       console.log('in mock item');
+  //       return Promise.resolve({ data: [{ id: 1 }, { id: 2 }] })
+  //     default:
+  //       console.log('in mock default');
+  //       return Promise.reject('error')
+  //   }
+  // })
+  // chrome://inspect/
+  // node --inspect-brk ./node_modules/.bin/jest --runInBand
+  axios.mockImplementation(() => Promise.reject({ data: { access_token: '443344' } }));
+  axios.mockReturnValue(Promise.reject('Error'));
+  debugger;
+  // return expect(mymethod()).rejects.toEqual({
+  //   error: 'error',
+  // });
+  expect.assertions(1);
+  const rate = await getToken();
+  expect(rate).toEqual(null);
 
-test("bad response for get my method", async () => {
-  jest.clearAllMocks();
-  axios.mockClear();
-  //axios.mockReturnValue(Promise.reject({response:{data:'abcd'},message:'test'}));
-  
-  axios.mockReturnValueOnce(() => Promise.reject({ response: { data: 'abcd' },message:'test' }));
-  axios.mockReturnValueOnce(() => Promise.resolve({ data: { access_token: '443344' } }));
-  try {
-    const rate = await mymethod();
-    expect(rate).toEqual(null);
-  } catch (e) {
-  }
+
 });

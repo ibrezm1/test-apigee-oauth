@@ -15,6 +15,9 @@ axios.defaults.baseURL = process.env.APIGEE_BASE;
 // access token via APIGEE
 // https://docs.apigee.com/api-platform/tutorials/secure-calls-your-api-through-oauth-20-client-credentials
 
+// Docs of err handling
+// https://stackabuse.com/handling-errors-with-axios/
+
 function getToken() {
     return new Promise((resolve, reject) => {
         var options = {
@@ -31,7 +34,9 @@ function getToken() {
             },
 
         }
-        axios(options).then(response =>  resolve(response.data.access_token) ).catch(err => console.log(err))
+        axios(options).then(response =>  resolve(response.data.access_token) ).catch(err => {
+            console.log(err.response.data);
+            reject(err.message)})
 
     })
 }
@@ -46,7 +51,9 @@ function mymethod() {
                     'Authorization': `Bearer ${token}`
                 }
             }
-            axios(options).then(response => resolve(response.data)).catch(err => reject(err))
+            axios(options).then(response => resolve(response.data)).catch(err => {
+                console.log(err.response.data);
+                reject(err.message)})
         }).catch(err => reject(err))
     })
 }
